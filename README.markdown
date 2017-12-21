@@ -1,4 +1,4 @@
-#Kamper
+# Kamper
 
 Kamper is an application that helps users find the perfect campground
 based on a number of elements.  This readme will continuously be updated
@@ -13,4 +13,4 @@ Current Stack is:
 
 Check back often for updates!
 
-####~CodesAFK
+#### ~CodesAFK
