@@ -5,6 +5,12 @@ const server = 1337;
 var campgrounds = [
     {name:"Beaver Bend", image:"https://static.pexels.com/photos/558454/pexels-photo-558454.jpeg"},
     {name:"Foss Creek", image:"https://static.pexels.com/photos/216675/pexels-photo-216675.jpeg"},
+    {name:"Arch Linux Pass", image:"https://static.pexels.com/photos/5922/wood-holiday-vacation-vintage.jpg"},
+    {name:"Beaver Bend", image:"https://static.pexels.com/photos/558454/pexels-photo-558454.jpeg"},
+    {name:"Foss Creek", image:"https://static.pexels.com/photos/216675/pexels-photo-216675.jpeg"},
+    {name:"Arch Linux Pass", image:"https://static.pexels.com/photos/5922/wood-holiday-vacation-vintage.jpg"},
+    {name:"Beaver Bend", image:"https://static.pexels.com/photos/558454/pexels-photo-558454.jpeg"},
+    {name:"Foss Creek", image:"https://static.pexels.com/photos/216675/pexels-photo-216675.jpeg"},
     {name:"Arch Linux Pass", image:"https://static.pexels.com/photos/5922/wood-holiday-vacation-vintage.jpg"}
 ];
 
