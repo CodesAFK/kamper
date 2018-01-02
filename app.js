@@ -9,17 +9,15 @@ mongoose.connect("mongodb://localhost/kamper");
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine", "ejs");
 
-var campgrounds = [
-    {name:"Beaver Bend", image:"https://static.pexels.com/photos/558454/pexels-photo-558454.jpeg"},
-    {name:"Foss Creek", image:"https://static.pexels.com/photos/216675/pexels-photo-216675.jpeg"},
-    {name:"Arch Linux Pass", image:"https://static.pexels.com/photos/5922/wood-holiday-vacation-vintage.jpg"},
-    {name:"Beaver Bend", image:"https://static.pexels.com/photos/558454/pexels-photo-558454.jpeg"},
-    {name:"Foss Creek", image:"https://static.pexels.com/photos/216675/pexels-photo-216675.jpeg"},
-    {name:"Arch Linux Pass", image:"https://static.pexels.com/photos/5922/wood-holiday-vacation-vintage.jpg"},
-    {name:"Beaver Bend", image:"https://static.pexels.com/photos/558454/pexels-photo-558454.jpeg"},
-    {name:"Foss Creek", image:"https://static.pexels.com/photos/216675/pexels-photo-216675.jpeg"},
-    {name:"Arch Linux Pass", image:"https://static.pexels.com/photos/5922/wood-holiday-vacation-vintage.jpg"}
-];
+// TEMP SCHEMA SETUP
+
+var campgroundSchema = new mongoose.Schema({
+    name:  String,
+    image: String
+});
+
+var Campground = mongoose.model("Campground", campgroundSchema);
+
 
 // =============================
 // GET Routes                 ==
@@ -31,7 +29,14 @@ app.get('/', function(req, res){
 
 app.get("/campgrounds", function(req, res){
 
-    res.render('campgrounds', {campgrounds:campgrounds});
+    Campground.find({}, function(err, allCampgrounds){
+        if(err){
+            console.log(err)
+        } else {
+           res.render('campgrounds', {campgrounds:allCampgrounds});
+        }
+    });
+
 });
 
 app.get('/campgrounds/new', function(req, res){
@@ -46,8 +51,14 @@ app.post('/campgrounds', function(req, res){
   var name = req.body.campgroundName;
   var image = req.body.campgroundImg;
   var newCampground = {name:name, image:image};
-  campgrounds.push(newCampground);
-  res.redirect('/campgrounds');
+  // Create new campground in db
+  Campground.create(newCampground, function(err, newlyCreated){
+      if(err){
+          console.log(err);
+      } else {
+          res.redirect("/campgrounds");
+      }
+  });
 });
 
 
