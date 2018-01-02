@@ -95,9 +95,10 @@ app.get('/campgrounds/:id', function(req, res){
 // =============================
 
 app.post('/campgrounds', function(req, res){
-  var name = req.body.campgroundName;
-  var image = req.body.campgroundImg;
-  var newCampground = {name:name, image:image};
+  var name          = req.body.campgroundName;
+  var image         = req.body.campgroundImg;
+  var desc          = req.body.description;
+  var newCampground = {name:name, image:image, description:desc};
   // Create new campground in db
   Campground.create(newCampground, function(err, newlyCreated){
       if(err){
