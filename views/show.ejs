@@ -1,3 +1,7 @@
 <% include ./partials/header %>
-<h1>This is the show template!!</h1>
+<h1><%= campground.name %></h1>
+
+<img src="<%=campground.image%>" alt="" height="250px" width="250px">
+
+<h2><%= campground.description %></h2>
 <% include ./partials/footer %>
