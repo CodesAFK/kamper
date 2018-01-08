@@ -1,6 +1,6 @@
 var mongoose = require("mongoose"),
 Campground = require('./models/campground'),
-Comment = require('./models/comment'),
+Comment = require('./models/comment');
 
 seedData = [
     {
@@ -42,7 +42,7 @@ function seedDB(){
                 if(err){
                     console.log(err);
                 } else {
-                    console.log("Added Campground " + campground);
+                    console.log("Added Campground " + campground.name);
 
                     Comment.create({
                        text:"This place should have Internet...",
