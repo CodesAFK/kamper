@@ -11,8 +11,8 @@ const server = 1337;
 mongoose.connect("mongodb://localhost/kamper");
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine", "ejs");
+app.use(express.static(__dirname + "/public"));
 
-// seedDB();
 
 // =============================
 // GET Routes                 ==
