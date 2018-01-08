@@ -1,12 +1,13 @@
-var express       = require('express'),
-    app           = express(),
-    mongoose      = require('mongoose'),
-    bodyParser    = require('body-parser'),
-    Campground    = require('./models/campground'),
-    Passport      = require('passport'),
-    LocalStrategy = ('passport-local'),
-    Comment       = require("./models/comment"),
-    seedDB        = require("./seeds");
+var express           = require('express'),
+    app               = express(),
+    mongoose          = require('mongoose'),
+    bodyParser        = require('body-parser'),
+    Campground        = require('./models/campground'),
+    Passport          = require('passport'),
+    LocalStrategy     = require('passport-local'),
+    Comment           = require("./models/comment"),
+    User              = require("./models/user"),
+    seedDB            = require("./seeds");
 
 const server = 1337;
 
