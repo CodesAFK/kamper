@@ -34,7 +34,13 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 
-seedDB();
+// Share current user across pages
+app.use(function(req, res, next){
+    res.locals.currentUser = req.user;
+    next();
+});
+
+
 // =============================
 // GET Routes                 ==
 // =============================
@@ -49,7 +55,7 @@ app.get("/campgrounds", function(req, res){
         if(err){
             console.log(err)
         } else {
-           res.render('campgrounds/campgrounds', {campgrounds:allCampgrounds});
+           res.render('campgrounds/campgrounds', { campgrounds:allCampgrounds });
         }
     });
 
@@ -171,9 +177,7 @@ app.post('/login', passport.authenticate('local',
         successRedirect: "/campgrounds",
         failureRedirect: "/login"
 
-    }), function (req, res){
-
-});
+    }));
 
 
 //  LOGOUT
