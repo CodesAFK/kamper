@@ -99,7 +99,7 @@ app.post('/campgrounds', function(req, res){
 
 //  NEW ROUTE
 
-app.get('/campgrounds/:id/comments/new', function(req, res){
+app.get('/campgrounds/:id/comments/new', isLoggedIn, function(req, res){
    Campground.findById(req.params.id, function(err, foundCampground){
       if(err){
           console.log(err);
@@ -113,7 +113,7 @@ app.get('/campgrounds/:id/comments/new', function(req, res){
 //   COMMENTS POST ROUTES     ==
 // =============================
 
-app.post('/campgrounds/:id/comments', function(req, res){
+app.post('/campgrounds/:id/comments', isLoggedIn, function(req, res){
     Campground.findById(req.params.id).populate("comments").exec(function(err, campground){
         if(err){
             console.log(err);
@@ -159,7 +159,7 @@ app.post('/register', function(req, res){
     });
 });
 
-//  SHOW LOGIN FORM
+//   LOGIN FORM GET/POST
 
 app.get('/login', function(req, res){
     res.render('login');
@@ -174,6 +174,28 @@ app.post('/login', passport.authenticate('local',
     }), function (req, res){
 
 });
+
+
+//  LOGOUT
+
+app.get('/logout', function(req, res){
+    req.logout();
+    res.redirect('/campgrounds');
+});
+
+
+// =============================
+// Homegrown Middleware       ==
+// =============================
+
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect('/login');
+}
+
+
 // =============================
 // Start Server               ==
 // =============================
