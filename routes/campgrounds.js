@@ -45,10 +45,11 @@ router.get('/:id', function (req, res) {
 // =============================
 
 router.post('/', isLoggedIn, function (req, res) {
-    var name = req.body.campgroundName;
-    var image = req.body.campgroundImg;
-    var desc = req.body.description;
-    var newCampground = {name: name, image: image, description: desc};
+    var name          = req.body.campgroundName,
+        image         = req.body.campgroundImg,
+        desc          = req.body.description,
+        author        = {id: req.user._id, username: req.user.username},
+        newCampground = {name: name, image: image, description: desc, createdBy:author};
 // Create new campground in db
     Campground.create(newCampground, function (err, newlyCreated) {
         if (err) {
