@@ -23,7 +23,7 @@ router.get("/", function (req, res) {
 
 // =================NEW CAMPGROUND=================
 
-router.get('/new', function (req, res) {
+router.get('/new', isLoggedIn, function (req, res) {
     res.render('campgrounds/new');
 });
 
@@ -44,7 +44,7 @@ router.get('/:id', function (req, res) {
 // POST Routes                ==
 // =============================
 
-router.post('/', function (req, res) {
+router.post('/', isLoggedIn, function (req, res) {
     var name = req.body.campgroundName;
     var image = req.body.campgroundImg;
     var desc = req.body.description;
