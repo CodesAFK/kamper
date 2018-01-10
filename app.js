@@ -7,6 +7,7 @@ var express           = require('express'),
     LocalStrategy     = require('passport-local'),
     Comment           = require("./models/comment"),
     User              = require("./models/user"),
+    methodOverride    = require('method-override');
     seedDB            = require("./seeds");
 
 var commentsRoute     = require("./routes/comments");
@@ -19,6 +20,8 @@ mongoose.connect("mongodb://localhost/kamper");
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
+app.use(methodOverride("_method"));
+
 
 // =============================
 // == PASSPORT CONFIGURATION  ==
