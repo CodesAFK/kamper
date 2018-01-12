@@ -70,7 +70,8 @@ router.put("/:comment_id", function(req, res){
             console.log(err);
             res.redirect('back');
         } else {
-
+            updatedComment.text = req.body.comment.text;
+            updatedComment.save();
             res.redirect('/campgrounds/' + req.params.id);
         }
     });
